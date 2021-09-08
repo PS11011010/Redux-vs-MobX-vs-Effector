@@ -9,8 +9,8 @@ import { getNj, getNe } from './Number';
 
 export default class DataProvider {
     private _root: IRoot;
-    private _Nj: TFibonacciNj;
-    private _Ne: TFibonacciNe;
+    private readonly _Nj: TFibonacciNj;
+    private readonly _Ne: TFibonacciNe;
 
     constructor(private _N: TFibonacciN) {
         [this._Nj, this._Ne] = [getNj(this._N), getNe(this._N)];

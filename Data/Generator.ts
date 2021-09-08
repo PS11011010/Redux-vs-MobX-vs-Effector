@@ -5,16 +5,14 @@ import {
     TFibonacciN,
     TFibonacciNe,
     TFibonacciNj,
-    TLinkKey, TProperty,
     TSimpleProperty,
-    TSimplePropertyKey
 } from './Interface';
 import { random } from './Number';
 
 const simpleGenerators = ['string', 'number', 'boolean'];
 
-const generateSimpleKey: (n: number) => TSimplePropertyKey = (n) => (`S_${n}` as TSimplePropertyKey);
-const generateLinkKey: (n: number) => TLinkKey = (n) => (`L_${n}` as TLinkKey);
+const generateSimpleKey: (n: number) => string = (n) => `S_${n}`;
+const generateLinkKey: (n: number) => string = (n) => `L_${n}`;
 const generateSimpleProperty: (n: number) => TSimpleProperty = (n) => {
     switch (simpleGenerators[random(simpleGenerators.length - 1)]) {
         case 'string': return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10)
@@ -28,7 +26,7 @@ const generateSimpleProperty: (n: number) => TSimpleProperty = (n) => {
 const generateTail: (Ne: TFibonacciNe, level: number) => ITail = (Ne, level) => {
     let i = 0;
     const result: ITail = {level,
-        tail: true
+        count: 0
     }
 
     while (i < Ne) {
@@ -43,32 +41,32 @@ const generateTail: (Ne: TFibonacciNe, level: number) => ITail = (Ne, level) => 
     return result;
 }
 
-const generateLink: (N: TFibonacciN, Ne: TFibonacciNe, Nj: TFibonacciNj, level: number) => ILevel = (N, Ne, Nj, level) => {
-    let i = 0;
-    const result: ILevel = {
-        ...generateTail(Ne, level)
+const generateLevel: (parent: ILevel, Ne: TFibonacciNe, Nj: TFibonacciNj) => ILevel = (parent, Ne, Nj) => {
+    if (parent.count === Nj) {
+        return generateLevel(parent[generateLinkKey(random(parent.count - 1))] as ILevel, Ne, Nj);
     }
 
-    if (level && (level === N || !random(Ne))) {
-        return result;
-    }
+    const newLevel = generateTail(Ne, parent.level + 1);
+    parent[generateLinkKey(++parent.count)] = newLevel;
 
-    while (i < Nj) {
-        result[generateLinkKey(i)] = (generateLink(N, Ne, Nj, ++level) as TProperty)
-        i++;
-
-        if (!random(Nj)) {
-            break;
-        }
-    }
-
-    return result;
+    return newLevel;
 }
 
 const generateRoot: (N: TFibonacciN, Ne: TFibonacciNe, Nj: TFibonacciNj) => IRoot = (N, Ne, Nj) => {
-    const root: IRoot = {
+    const root = {
         ...generateTail(Ne, 0),
-        ...generateLink(N, Ne, Nj, 0)
+        total: N
+    }
+    const allLevels: Array<ILevel> = [root];
+
+    /** Создадим цепочку глубиной Nj */
+    while (allLevels.length !== Nj) {
+        allLevels.push(generateLevel(allLevels[allLevels.length - 1], Ne, Nj));
+    }
+
+    /** Навешаем в случайные ветви цепочки потомков */
+    while (allLevels.length !== N) {
+        allLevels.push(generateLevel(allLevels[random(allLevels.length - 1)], Ne, Nj));
     }
 
     return root;
@@ -79,6 +77,6 @@ export {
     generateLinkKey,
     generateSimpleProperty,
     generateTail,
-    generateLink,
+    generateLevel,
     generateRoot
 }
