@@ -12,5 +12,6 @@ const random: (n: number) => number = (n) => Math.floor(Math.random()*(n+1));
 export {
     getNj,
     getNe,
-    random
+    random,
+    FibonacciSequence
 }

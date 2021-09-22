@@ -1,0 +1,70 @@
+.View-Level {
+    margin: 6px 0 6px 6px;
+    background-color: #d6f1db;
+    max-width: 100%;
+}
+
+.View-Level__info {
+    font-weight: 400;
+}
+
+.View-Level__tail {
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+.View-Level__simple {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.View-Level__link {
+
+}
+
+.View-Simple {
+    margin: 4px;
+    background-color: #f5ba73;
+}
+
+/* ****************************************************************************************************************** */
+
+.View-Level__0 {
+    background-color: #F0DCCA;
+}
+
+.View-Level__1 {
+    background-color: #DFD1B8;
+}
+
+.View-Level__2 {
+    background-color: #CDC6A5;
+}
+
+.View-Level__3 {
+    background-color: #ADB396;
+}
+
+.View-Level__4 {
+    background-color: #8D9F87;
+}
+
+.View-Level__5 {
+    background-color: #7E9985;
+}
+
+.View-Level__6 {
+    background-color: #6F9283;
+}
+
+.View-Level__7 {
+    background-color: #6C8080;
+}
+
+.View-Level__8 {
+    background-color: #6B777F;
+}
+
+.View-Level__9 {
+    background-color: #616C73;
+}

@@ -1,5 +1,5 @@
-import { TFibonacciN, TFibonacciNe, TFibonacciNj } from '../Data/Interface';
-import { getNe, getNj } from '../Data/Number';
+import { TFibonacciN, TFibonacciNe, TFibonacciNj } from '../src/Data/Interface';
+import { getNe, getNj } from '../src/Data/Number';
 
 describe('Data/Number', () => {
     it('Fibonacci', () => {

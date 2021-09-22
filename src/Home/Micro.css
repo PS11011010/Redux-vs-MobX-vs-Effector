@@ -1,0 +1,31 @@
+.M-Flex {
+  display: flex;
+}
+
+.M-FlexColumn {
+    flex-direction: column;
+}
+
+.M-FlexRow {
+    flex-direction: row;
+}
+
+.M-FullWidth {
+    width: 100%;
+}
+
+.M-Margin-s {
+    margin: 2px;
+}
+
+.M-Margin-m {
+    margin: 4px;
+}
+
+.M-Margin-l {
+    margin: 6px;
+}
+
+.M-Margin-xl {
+    margin: 8px;
+}

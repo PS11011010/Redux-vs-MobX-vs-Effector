@@ -4,9 +4,9 @@ import {
     generateSimpleKey,
     generateSimpleProperty,
     generateTail
-} from '../Data/Generator';
-import { ITail, TFibonacciN, TFibonacciNe, TFibonacciNj, TSimpleProperty } from '../Data/Interface';
-import { getNe, getNj, random } from '../Data/Number';
+} from '../src/Data/Generator';
+import { ITail, TFibonacciN, TFibonacciNe, TFibonacciNj, TSimpleProperty } from '../src/Data/Interface';
+import { getNe, getNj, random } from '../src/Data/Number';
 
 describe('Data/Generator', () => {
     describe('generateSimpleKey', () => {

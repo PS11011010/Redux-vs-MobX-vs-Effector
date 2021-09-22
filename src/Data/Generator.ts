@@ -10,9 +10,11 @@ import {
 import { random } from './Number';
 
 const simpleGenerators = ['string', 'number', 'boolean'];
+const simpleKeyPrefix = 'S_';
+const linkKeyPrefix = 'L_';
 
-const generateSimpleKey: (n: number) => string = (n) => `S_${n}`;
-const generateLinkKey: (n: number) => string = (n) => `L_${n}`;
+const generateSimpleKey: (n: number) => string = (n) => `${simpleKeyPrefix}${n}`;
+const generateLinkKey: (n: number) => string = (n) => `${linkKeyPrefix}${n}`;
 const generateSimpleProperty: (n: number) => TSimpleProperty = (n) => {
     switch (simpleGenerators[random(simpleGenerators.length - 1)]) {
         case 'string': return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10)
@@ -78,5 +80,7 @@ export {
     generateSimpleProperty,
     generateTail,
     generateLevel,
-    generateRoot
+    generateRoot,
+    simpleKeyPrefix,
+    linkKeyPrefix
 }
