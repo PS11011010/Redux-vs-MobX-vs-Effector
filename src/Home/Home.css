@@ -1,0 +1,18 @@
+.Home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.Home-Title {
+    margin: 24px;
+    font-size: xxx-large;
+    color: cadetblue;
+}
+
+.Home .Home-Link {
+    font-size: xx-large;
+    color: black;
+}
