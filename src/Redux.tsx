@@ -1,12 +1,13 @@
 import React from 'react';
-import BackLink from './Home/BackLink';
+import { Provider } from 'react-redux';
+import App from './Redux/App'
+import store from './Redux/store'
 
 const Redux = () => {
     return (
-        <>
-            <BackLink/>
-            <div>Redux</div>
-        </>
+        <Provider store={store}>
+            <App/>
+        </Provider>
     )
 }
 
