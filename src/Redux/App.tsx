@@ -1,20 +1,25 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Level from '../View/Level';
-import { IRootLevelState, reload } from './store';
-import { IRoot, TFibonacciN } from './../Data/Interface';
+import Tail from './Tail'
+import { reload, reloadTails } from './store';
+import { ILevel, IRoot, TFibonacciN } from './../Data/Interface';
 import BackLink from './../Home/BackLink';
 import FibonacciSelect from './../Home/FibonacciSelect';
 
-import './../Home/Micro.css'
+import './../Home/Micro.css';
+import './../View/View.css';
 
 const App = () => {
     const dispatch = useDispatch();
     // @ts-ignore
-    const currentData: IRoot = useSelector<IRootLevelState>(state => state.dataStore.currentData);
+    const currentData: IRoot = useSelector(state => state.dataStore.currentData);
+    // @ts-ignore
+    const tailsCurrentData: Array<ILevel> = useSelector(state => state.tailsStore.tails);
 
     const onFibonacciChange = (newValue: TFibonacciN) => {
         dispatch(reload(newValue));
+        dispatch(reloadTails());
     }
 
     return (
@@ -26,6 +31,11 @@ const App = () => {
                     <FibonacciSelect onChange={onFibonacciChange}/>
                 </div>
                 <div className="M-FullWidth">
+                    <div className="View-TailGroup">
+                        {
+                            tailsCurrentData.map((tail) => <Tail tail={tail}/>)
+                        }
+                    </div>
                     <Level level={currentData}/>
                 </div>
             </div>

@@ -54,7 +54,7 @@ const generateLevel: (parent: ILevel, Ne: TFibonacciNe, Nj: TFibonacciNj) => ILe
     return newLevel;
 }
 
-const generateRoot: (N: TFibonacciN, Ne: TFibonacciNe, Nj: TFibonacciNj) => IRoot = (N, Ne, Nj) => {
+const generateData: (N: TFibonacciN, Ne: TFibonacciNe, Nj: TFibonacciNj) => Array<ILevel> = (N, Ne, Nj) => {
     const root = {
         ...generateTail(Ne, 0),
         total: N
@@ -71,7 +71,7 @@ const generateRoot: (N: TFibonacciN, Ne: TFibonacciNe, Nj: TFibonacciNj) => IRoo
         allLevels.push(generateLevel(allLevels[random(allLevels.length - 1)], Ne, Nj));
     }
 
-    return root;
+    return allLevels;
 }
 
 export {
@@ -80,7 +80,7 @@ export {
     generateSimpleProperty,
     generateTail,
     generateLevel,
-    generateRoot,
+    generateData,
     simpleKeyPrefix,
     linkKeyPrefix
 }

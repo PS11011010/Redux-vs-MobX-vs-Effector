@@ -29,6 +29,14 @@
 
 /* ****************************************************************************************************************** */
 
+.View-TailGroup {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 210px;
+    overflow: hidden;
+    background-color: #9CA3BD;
+}
+
 .View-Level__0 {
     background-color: #F0DCCA;
 }
