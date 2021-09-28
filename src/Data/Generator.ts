@@ -9,6 +9,8 @@ import {
 } from './Interface';
 import { random } from './Number';
 
+let levelId: number = 0;
+
 const simpleGenerators = ['string', 'number', 'boolean'];
 const simpleKeyPrefix = 'S_';
 const linkKeyPrefix = 'L_';
@@ -25,9 +27,17 @@ const generateSimpleProperty: (n: number) => TSimpleProperty = (n) => {
     return 0;
 }
 
+const generateFlatTail: (Ne: TFibonacciNe, level: number) => Array<TSimpleProperty> = (Ne, level) => {
+    const tail = generateTail(Ne, level);
+
+    return Object.keys(tail).map((key) => tail[key]);
+}
+
 const generateTail: (Ne: TFibonacciNe, level: number) => ITail = (Ne, level) => {
     let i = 0;
-    const result: ITail = {level,
+    const result: ITail = {
+        id: levelId++,
+        level,
         count: 0
     }
 
@@ -79,6 +89,7 @@ export {
     generateLinkKey,
     generateSimpleProperty,
     generateTail,
+    generateFlatTail,
     generateLevel,
     generateData,
     simpleKeyPrefix,

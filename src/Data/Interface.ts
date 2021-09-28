@@ -8,6 +8,7 @@ export interface IRoot extends ILevel {
 
 /** Слой - объект, на который ссылается корень или другой слой. */
 export interface ILevel {
+    id: number;
     level: number;
     count: number;
     [propName: string]: boolean | number | string | Record<string, unknown>;
@@ -36,10 +37,10 @@ export interface IFlatTail {
 /** N - глубина вложенности и максимальное количество свойств в каждом слое определяется параметром.
  * Соответствует одному из чисел ряда Фибоначчи от 10 до 1000.
  */
-export type TFibonacciN = 13 | 21 | 34 | 55 | 89 | 144 | 233 | 377 | 610 | 987 | 1597 | 2584;
+export type TFibonacciN = 13 | 21 | 34 | 55 | 89 | 144 | 233 | 377 | 610 | 987 | 1597 | 2584 | 4181 | 6765 | 10946;
 
 /** Nj - (N junior) младшее число пропорции. Для N = 34 это будет 13. */
-export type TFibonacciNj = 5 | 8 | 13 | 21 | 34 | 55 | 89 | 144 | 233 | 377 | 610 | 987;
+export type TFibonacciNj = 5 | 8 | 13 | 21 | 34 | 55 | 89 | 144 | 233 | 377 | 610 | 987 | 1597 | 2584 | 4181;
 
 /** Ne - (N elder) старшее число пропорции. Для N = 34 это будет 21. */
-export type TFibonacciNe = 8 | 13 | 21 | 34 | 55 | 89 | 144 | 233 | 377 | 610 | 987 | 1597;
+export type TFibonacciNe = 8 | 13 | 21 | 34 | 55 | 89 | 144 | 233 | 377 | 610 | 987 | 1597 | 2584 | 4181 | 6765;
