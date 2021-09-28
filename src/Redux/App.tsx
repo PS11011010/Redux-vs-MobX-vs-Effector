@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import BackLink from './../Home/BackLink';
+import BackHeader from './../Home/BackHeader';
 import { actions } from './store';
 
 import './../Home/Micro.css';
@@ -269,7 +269,7 @@ const App = () => {
 
     return (
         <>
-            <BackLink/>
+            <BackHeader onFibonacciSelect={() => window.location.reload()}/>
             <div className="M-Flex M-FlexRow">
                 <div className="M-FlexColumn">
                     <span className="Redux-Title Home-Title">Redux</span>

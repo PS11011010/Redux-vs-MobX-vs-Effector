@@ -1,0 +1,14 @@
+.Home-BackHeader {
+    background-color: #81726A;
+    align-items: baseline;
+}
+
+.Home-BackHeader__link {
+    color: white;
+    font-weight: 700;
+}
+
+.Home-BackHeader__select {
+    flex: 1;
+    max-width: 150px;
+}

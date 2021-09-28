@@ -1,10 +1,10 @@
 import React from 'react';
-import BackLink from './Home/BackLink';
+import BackHeader from './Home/BackHeader';
 
 const Effector = () => {
     return (
         <>
-            <BackLink/>
+            <BackHeader/>
             <div>Effector</div>
         </>
     )

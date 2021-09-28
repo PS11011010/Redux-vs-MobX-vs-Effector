@@ -1,8 +1,9 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 import { generateFlatTail, generateSimpleProperty, generateTail } from '../Data/Generator';
 import { TFibonacciN, TFibonacciNe } from '../Data/Interface';
+import { readN } from '../Home/FibonacciSelect';
 
-const N: TFibonacciN | 1e4 = 610;
+const N: TFibonacciN | 1e4 = readN() || 13;
 const testInfoSlice = createSlice({
     name: 'testInfoStore',
     initialState: {

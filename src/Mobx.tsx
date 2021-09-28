@@ -1,10 +1,10 @@
 import React from 'react';
-import BackLink from './Home/BackLink';
+import BackHeader from './Home/BackHeader';
 
 const Mobx = () => {
     return (
         <>
-            <BackLink/>
+            <BackHeader/>
             <div>Mobx</div>
         </>
     )

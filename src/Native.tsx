@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IRoot, TFibonacciN } from './Data/Interface';
-import BackLink from './Home/BackLink';
+import BackHeader from './Home/BackHeader';
 import FibonacciSelect from './Home/FibonacciSelect';
 import Level from './View/Level';
 import DataProvider from './Data/Provider';
@@ -17,7 +17,7 @@ const Native = () => {
 
     return (
         <>
-            <BackLink/>
+            <BackHeader/>
             <div className="M-Flex M-FlexRow">
                 <div className="M-FlexColumn">
                     <span className="Native-Title Home-Title">Native</span>
