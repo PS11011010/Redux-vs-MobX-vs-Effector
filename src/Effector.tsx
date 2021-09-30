@@ -5,7 +5,7 @@ const Effector = () => {
     return (
         <>
             <BackHeader/>
-            <div>Effector</div>
+            <div>Effector (App in progress)</div>
         </>
     )
 }

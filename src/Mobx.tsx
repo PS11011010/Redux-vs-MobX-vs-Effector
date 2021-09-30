@@ -1,12 +1,13 @@
 import React from 'react';
-import BackHeader from './Home/BackHeader';
+import { Provider } from "mobx-react"
+import { store } from './MobX/Store'
+import App from './MobX/App'
 
 const Mobx = () => {
     return (
-        <>
-            <BackHeader/>
-            <div>Mobx</div>
-        </>
+        <Provider store={store}>
+            <App />
+        </Provider>
     )
 }
 

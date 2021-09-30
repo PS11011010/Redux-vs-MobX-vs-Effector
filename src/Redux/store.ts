@@ -35,7 +35,7 @@ const reducers = {
                     state.checked = true;
                 },
                 [generateNewDataReducerName](state) {
-                    const data = generateTail(144, state.level);
+                    const data = generateTail(Ne, state.level);
                     for (const dataKey in data) {
                         state[dataKey] = data[dataKey];
                     }
@@ -71,7 +71,7 @@ const reducers = {
                     state.push(generateSimpleProperty(state.length));
                 },
                 [generateNewDataReducerName](state) {
-                    const data = generateFlatTail(144, state.length);
+                    const data = generateFlatTail(Ne, state.length);
                     state.length = 0;
                     Array.prototype.push.apply(state, data);
                 }
