@@ -17,6 +17,8 @@ _Тест 1 запустится автоматически (это обусло
 
 `npm run build`
 
+`npm install -g serve`
+
 `npm run start:builded`
 
 Откройте [http://localhost:5000](http://localhost:5000) в браузере. На странице будет несколько ссылок: **Redux, Mobx, Effector** _(сейчас его страница не реализована)_.
