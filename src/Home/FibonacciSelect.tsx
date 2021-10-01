@@ -27,7 +27,7 @@ const readN: () => TFibonacciN | 1e4 = () => {
 const variants: OptionTypeBase[] = FibonacciSequence
     .filter((n) => n >= 13) /** По-условиям, мы генерируем числа из ряда Фибоначчи, начиная только с 13 */
     .map((n) => {
-        if (n === 10946) { /** При N больше 10 000 вкладка примерно на 10 2хх */
+        if (n === 10946) { /** При N больше 10 000 вкладка умирает примерно на 10 2хх */
             return {
                 value: 1e4,
                 label: 1e4

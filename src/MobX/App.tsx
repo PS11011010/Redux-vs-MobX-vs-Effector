@@ -38,7 +38,7 @@ const App: React.FunctionComponent<IAppOptions> = (props) => {
         {
             id: 0,
             result: endTime - startTime,
-            description: `У нас ${store.N} slice объектов в store. Их вытаскивание хуком useSelector занимает какое-то время`,
+            description: `У нас ${store.N} slice объектов в store. Их вытаскивание занимает какое-то время`,
             action(){}
         }, {
             id: 1,
