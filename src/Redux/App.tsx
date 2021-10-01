@@ -38,7 +38,7 @@ const App = () => {
         {
             id: 0,
             result: endTime - startTime,
-            description: `Вытаскиваем из store N slice и N flatSlice.`,
+            description: `Вытаскиваем из store ${testInfo.N} slice и ${testInfo.N} flatSlice.`,
             action(){}
         }, {
             id: 1,

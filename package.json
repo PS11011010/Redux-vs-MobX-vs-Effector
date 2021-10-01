@@ -8,6 +8,7 @@
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
+    "start:builded": "serve -s build",
     "build": "react-scripts build",
     "build:typescript": "tsc",
     "test": "jest --testPathPattern=test"

@@ -38,7 +38,7 @@ const App: React.FunctionComponent<IAppOptions> = (props) => {
         {
             id: 0,
             result: endTime - startTime,
-            description: `Вытаскиваем из store N slice и N flatSlice.`,
+            description: `Вытаскиваем из store ${store.N} slice и ${store.N} flatSlice.`,
             action(){}
         }, {
             id: 1,
