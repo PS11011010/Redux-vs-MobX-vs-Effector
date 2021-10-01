@@ -10,7 +10,7 @@ const GeneratedSlice = types
     .model('GeneratedSlice', {
         tail: types.map(types.union(types.boolean, types.string, types.number)),
         level: types.number,
-        checked: false
+        checked: types.optional(types.union(types.boolean, types.undefined), undefined)
     })
     .actions(self => {
         return {
@@ -22,6 +22,12 @@ const GeneratedSlice = types
                 for (const dataKey in data) {
                     self.tail.set(dataKey, data[dataKey])
                 }
+            },
+            unCheck() {
+                self.checked = undefined;
+            },
+            clear() {
+                self.tail.clear();
             }
         }
     });
@@ -38,6 +44,12 @@ const GeneratedFlatSlice = types
             generateNewData() {
                 self.flatTail.length = 0;
                 Array.prototype.push.apply(self.flatTail, generateFlatTail(Ne, 1))
+            },
+            deleteItem() {
+                self.flatTail.pop();
+            },
+            clear() {
+                self.flatTail.clear();
             }
         }
     })
