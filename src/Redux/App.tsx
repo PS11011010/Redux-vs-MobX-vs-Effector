@@ -38,11 +38,11 @@ const App = () => {
         {
             id: 0,
             result: endTime - startTime,
-            description: `У нас ${testInfo.N} slice объектов в store. Их вытаскивание хуком useSelector занимает какое-то время`,
+            description: `Вытаскиваем из store N slice и N flatSlice.`,
             action(){}
         }, {
             id: 1,
-            description: `У нас ${testInfo.N} slice объектов. Пройдемся по ним циклом и заглянем в значение свойства level`,
+            description: `Читаем свойство level в каждом slice.`,
             action(){
                 const startTime = new Date().getTime();
                 const badSlices = [];
@@ -60,14 +60,14 @@ const App = () => {
             }
         }, {
             id: 2,
-            description: `У нас ${testInfo.N} slice объектов. Вызовем у каждого action "check"`,
+            description: `Вызываем action check для каждого slice.`,
             action(){
                 let i = testInfo.N;
                 const startTime = new Date().getTime();
 
                 while (i--) {
                     // @ts-ignore
-                    dispatch(actions['generatedSlice_' +i +'_check']())
+                    dispatch(actions['generatedSlice_' + i +'_check']())
                 }
 
                 this.result = new Date().getTime() - startTime;
@@ -77,7 +77,7 @@ const App = () => {
             }
         }, {
             id: 3,
-            description: `У нас ${testInfo.N} slice объектов. Вызовем у каждого action "generateNewData"`,
+            description: `Вызываем action generateNewData для каждого slice.`,
             action(){
                 let i = testInfo.N;
                 const startTime = new Date().getTime();
@@ -94,7 +94,7 @@ const App = () => {
             }
         }, {
             id: 4,
-            description: `У нас ${testInfo.N} slice массивов. Вызовем у каждого action "addNewItem"`,
+            description: `Вызываем action addNewItem для каждого flatSlice.`,
             action() {
                 let i = testInfo.N;
                 const startTime = new Date().getTime();
@@ -111,7 +111,7 @@ const App = () => {
             }
         }, {
             id: 5,
-            description: `У нас ${testInfo.N} slice массивов. Вызовем у каждого action "generateNewData"`,
+            description: `Вызываем action generateNewData для каждого flatSlice.`,
             action() {
                 let i = testInfo.N;
                 const startTime = new Date().getTime();
@@ -128,7 +128,75 @@ const App = () => {
             }
         }, {
             id: 6,
-            description: `Async. У нас ${testInfo.N} slice объектов. Вызовем у каждого action "check" через setTimeout(0)`,
+            description: 'Вызываем action unCheck для каждого slice.',
+            action() {
+                let i = testInfo.N;
+                const startTime = new Date().getTime();
+
+                while (i--) {
+                    // @ts-ignore
+                    dispatch(actions['generatedSlice_' + i +'_unCheck']())
+                }
+
+                this.result = new Date().getTime() - startTime;
+                addTestsResult(this.id, String(this.result))
+
+                setTestsResults(_testResults);
+            }
+        }, {
+            id: 7,
+            description: 'Вызываем action clear для каждого slice.',
+            action() {
+                let i = testInfo.N;
+                const startTime = new Date().getTime();
+
+                while (i--) {
+                    // @ts-ignore
+                    dispatch(actions['generatedSlice_' + i +'_clear']())
+                }
+
+                this.result = new Date().getTime() - startTime;
+                addTestsResult(this.id, String(this.result))
+
+                setTestsResults(_testResults);
+            }
+        }, {
+            id: 8,
+            description: 'Вызываем action deleteItem для каждого flatSlice.',
+            action() {
+                let i = testInfo.N;
+                const startTime = new Date().getTime();
+
+                while (i--) {
+                    // @ts-ignore
+                    dispatch(actions['generatedFlatSlice_' + i + '_deleteItem']())
+                }
+
+                this.result = new Date().getTime() - startTime;
+                addTestsResult(this.id, String(this.result))
+
+                setTestsResults(_testResults);
+            }
+        }, {
+            id: 9,
+            description: 'Вызываем action clear для каждого flatSlice.',
+            action() {
+                let i = testInfo.N;
+                const startTime = new Date().getTime();
+
+                while (i--) {
+                    // @ts-ignore
+                    dispatch(actions['generatedFlatSlice_' + i + '_clear']())
+                }
+
+                this.result = new Date().getTime() - startTime;
+                addTestsResult(this.id, String(this.result))
+
+                setTestsResults(_testResults);
+            }
+        }, {
+            id: 10,
+            description: 'Асинхронно вызываем action check для каждого slice.',
             action(){
                 let i = testInfo.N;
                 const startTime = new Date().getTime();
@@ -152,8 +220,8 @@ const App = () => {
                 })
             }
         }, {
-            id: 7,
-            description: `Async. У нас ${testInfo.N} slice объектов. Вызовем у каждого action "generateNewData" через setTimeout(0)`,
+            id: 11,
+            description: 'Асинхронно вызываем action generateNewData для каждого slice.',
             action(){
                 let i = testInfo.N;
                 const startTime = new Date().getTime();
@@ -177,8 +245,8 @@ const App = () => {
                 })
             }
         }, {
-            id: 8,
-            description: `Async. У нас ${testInfo.N} slice массивов. Вызовем у каждого action "addNewItem" через setTimeout(0)`,
+            id: 12,
+            description: 'Асинхронно вызываем action addNewItem для каждого flatSlice.',
             action(){
                 let i = testInfo.N;
                 const startTime = new Date().getTime();
@@ -202,8 +270,8 @@ const App = () => {
                 })
             }
         }, {
-            id: 9,
-            description: `Async. У нас ${testInfo.N} slice массивов. Вызовем у каждого action "generateNewData" через setTimeout(0)`,
+            id: 13,
+            description: 'Асинхронно вызываем action generateNewData для каждого flatSlice.',
             action(){
                 let i = testInfo.N;
                 const startTime = new Date().getTime();
@@ -226,6 +294,106 @@ const App = () => {
                     setTestsResults(_testResults);
                 })
             }
+        }, {
+            id: 14,
+            description: 'Асинхронно вызываем action unCheck для каждого slice.',
+            action() {
+                let i = testInfo.N;
+                const startTime = new Date().getTime();
+                const promisesToWait = [];
+
+                while (i--) {
+                    promisesToWait.push(new Promise((resolve) => {
+                        setTimeout((i) => {
+                            // @ts-ignore
+                            dispatch(actions['generatedSlice_' + i + '_unCheck']())
+                            resolve(null);
+                        }, 0, i)
+                    }))
+                }
+
+                Promise.all(promisesToWait).then(() => {
+                    this.result = new Date().getTime() - startTime;
+                    addTestsResult(this.id, String(this.result))
+
+                    setTestsResults(_testResults);
+                })
+            }
+        }, {
+            id: 15,
+            description: 'Асинхронно вызываем action clear для каждого slice.',
+            action() {
+                let i = testInfo.N;
+                const startTime = new Date().getTime();
+                const promisesToWait = [];
+
+                while (i--) {
+                    promisesToWait.push(new Promise((resolve) => {
+                        setTimeout((i) => {
+                            // @ts-ignore
+                            dispatch(actions['generatedSlice_' + i + '_clear']())
+                            resolve(null);
+                        }, 0, i)
+                    }))
+                }
+
+                Promise.all(promisesToWait).then(() => {
+                    this.result = new Date().getTime() - startTime;
+                    addTestsResult(this.id, String(this.result))
+
+                    setTestsResults(_testResults);
+                })
+            }
+        }, {
+            id: 16,
+            description: 'Асинхронно вызываем action deleteItem для каждого flatSlice.',
+            action() {
+                let i = testInfo.N;
+                const startTime = new Date().getTime();
+                const promisesToWait = [];
+
+                while (i--) {
+                    promisesToWait.push(new Promise((resolve) => {
+                        setTimeout((i) => {
+                            // @ts-ignore
+                            dispatch(actions['generatedFlatSlice_' + i + '_deleteItem']())
+                            resolve(null);
+                        }, 0, i)
+                    }))
+                }
+
+                Promise.all(promisesToWait).then(() => {
+                    this.result = new Date().getTime() - startTime;
+                    addTestsResult(this.id, String(this.result))
+
+                    setTestsResults(_testResults);
+                })
+            }
+        }, {
+            id: 17,
+            description: 'Асинхронно вызываем action clear для каждого flatSlice.',
+            action() {
+                let i = testInfo.N;
+                const startTime = new Date().getTime();
+                const promisesToWait = [];
+
+                while (i--) {
+                    promisesToWait.push(new Promise((resolve) => {
+                        setTimeout((i) => {
+                            // @ts-ignore
+                            dispatch(actions['generatedFlatSlice_' + i + '_clear']())
+                            resolve(null);
+                        }, 0, i)
+                    }))
+                }
+
+                Promise.all(promisesToWait).then(() => {
+                    this.result = new Date().getTime() - startTime;
+                    addTestsResult(this.id, String(this.result))
+
+                    setTestsResults(_testResults);
+                })
+            }
         }
     ];
 
@@ -235,7 +403,7 @@ const App = () => {
             return (<div key={numberOfTest} className="M-Margin-xl">
                 <button onClick={() => test.action()} disabled={!!testsResults[i]}>Run Test {numberOfTest}</button>
                 <span className="M-Margin-m">Test {numberOfTest} <b>Result: {testsResults[i]}</b></span>
-                <div className="M-Margin-m">{test.description}</div>
+                <span className="M-Margin-m">{test.description}</span>
             </div>)
         });
 
@@ -252,7 +420,7 @@ const App = () => {
                     <button
                         className="M-Margin-xl"
                         onClick={() => copyResult()}
-                        disabled={testsResults.length < 10}>
+                        disabled={testsResults.length < tests.length}>
                         Copy results to clipboard
                     </button>
                 </div>

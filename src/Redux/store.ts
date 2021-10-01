@@ -25,6 +25,8 @@ const reducers = {
     while (i--) {
         const checkReducerName = `generatedSlice_${i}_check`;
         const generateNewDataReducerName = `generatedSlice_${i}_generateNewData`;
+        const unCheckReducerName = `generatedSlice_${i}_unCheck`;
+        const clearReducerName = `generatedSlice_${i}_clear`;
         const sliceName = `generatedSlice_${i}`;
 
         const slice = createSlice({
@@ -39,6 +41,12 @@ const reducers = {
                     for (const dataKey in data) {
                         state[dataKey] = data[dataKey];
                     }
+                },
+                [unCheckReducerName](state) {
+                    delete  state.checked;
+                },
+                [clearReducerName](state) {
+                    Object.keys(state).forEach((key) => delete state[key]);
                 }
             }
         });
@@ -47,6 +55,10 @@ const reducers = {
         actions[checkReducerName] = slice.actions[checkReducerName];
         // @ts-ignore
         actions[generateNewDataReducerName] = slice.actions[generateNewDataReducerName];
+        // @ts-ignore
+        actions[unCheckReducerName] = slice.actions[unCheckReducerName];
+        // @ts-ignore
+        actions[clearReducerName] = slice.actions[clearReducerName];
 
         // @ts-ignore
         reducers[sliceName] = slice.reducer;
@@ -61,6 +73,8 @@ const reducers = {
     while (i--) {
         const addNewItemReducerName = `generatedFlatSlice_${i}_addNewItem`;
         const generateNewDataReducerName = `generatedFlatSlice_${i}_generateNewData`;
+        const deleteItemReducerName = `generatedFlatSlice_${i}_deleteItem`;
+        const clearReducerName = `generatedFlatSlice_${i}_clear`;
         const sliceName = `generatedFlatSlice_${i}`;
 
         const slice = createSlice({
@@ -74,6 +88,12 @@ const reducers = {
                     const data = generateFlatTail(Ne, state.length);
                     state.length = 0;
                     Array.prototype.push.apply(state, data);
+                },
+                [deleteItemReducerName](state) {
+                    state.pop();
+                },
+                [clearReducerName](state) {
+                    state.length = 0;
                 }
             }
         });
@@ -82,6 +102,10 @@ const reducers = {
         actions[addNewItemReducerName] = slice.actions[addNewItemReducerName];
         // @ts-ignore
         actions[generateNewDataReducerName] = slice.actions[generateNewDataReducerName];
+        // @ts-ignore
+        actions[deleteItemReducerName] = slice.actions[deleteItemReducerName];
+        // @ts-ignore
+        actions[clearReducerName] = slice.actions[clearReducerName];
 
         // @ts-ignore
         reducers[sliceName] = slice.reducer;
