@@ -30,7 +30,7 @@ const App = () => {
         flatSlices.push(useSelector(state => state[`generatedFlatSlice_${i}`]));
     }
     const endTime = new Date().getTime();
-    addTestsResult(0, `Время, за которое было вытащено ${testInfo.N} slice: ${endTime - startTime} мсек.`);
+    addTestsResult(0, String(endTime - startTime));
     const [ testsResults, setTestsResults ] = useState<string[]>(_testResults);
     //endregion
 
@@ -54,11 +54,7 @@ const App = () => {
                 })
 
                 this.result = new Date().getTime() - startTime;
-                addTestsResult(this.id, [
-                    `Время, за которое было просмотрено свойство level для ${testInfo.N} slice:`,
-                    `${this.result} мсек.`,
-                    `Не совпало id: ${badSlices.length}`
-                ].join(' '))
+                addTestsResult(this.id, String(this.result))
 
                 setTestsResults(_testResults);
             }
@@ -75,10 +71,7 @@ const App = () => {
                 }
 
                 this.result = new Date().getTime() - startTime;
-                addTestsResult(this.id, [
-                    `Время, за которое был вызван action "check" для ${testInfo.N} slice:`,
-                    `${this.result} мсек.`
-                ].join(' '))
+                addTestsResult(this.id, String(this.result))
 
                 setTestsResults(_testResults);
             }
@@ -95,10 +88,7 @@ const App = () => {
                 }
 
                 this.result = new Date().getTime() - startTime;
-                addTestsResult(this.id, [
-                    `Время, за которое был вызван action "generateNewData" для ${testInfo.N} slice:`,
-                    `${this.result} мсек.`
-                ].join(' '))
+                addTestsResult(this.id, String(this.result))
 
                 setTestsResults(_testResults);
             }
@@ -115,10 +105,7 @@ const App = () => {
                 }
 
                 this.result = new Date().getTime() - startTime;
-                addTestsResult(this.id, [
-                    `Время, за которое был вызван action "addNewItem" для ${testInfo.N} slice:`,
-                    `${this.result} мсек.`
-                ].join(' '))
+                addTestsResult(this.id, String(this.result))
 
                 setTestsResults(_testResults);
             }
@@ -135,10 +122,7 @@ const App = () => {
                 }
 
                 this.result = new Date().getTime() - startTime;
-                addTestsResult(this.id, [
-                    `Время, за которое был вызван action "generateNewData" для ${testInfo.N} slice:`,
-                    `${this.result} мсек.`
-                ].join(' '))
+                addTestsResult(this.id, String(this.result))
 
                 setTestsResults(_testResults);
             }
@@ -162,10 +146,7 @@ const App = () => {
 
                 Promise.all(promisesToWait).then(() => {
                     this.result = new Date().getTime() - startTime;
-                    addTestsResult(this.id, [
-                        `Async. Время, за которое был вызван action "check" через setTimeout(0) для ${testInfo.N} slice:`,
-                        `${this.result} мсек.`
-                    ].join(' '))
+                    addTestsResult(this.id, String(this.result))
 
                     setTestsResults(_testResults);
                 })
@@ -190,10 +171,7 @@ const App = () => {
 
                 Promise.all(promisesToWait).then(() => {
                     this.result = new Date().getTime() - startTime;
-                    addTestsResult(this.id, [
-                        `Async. Время, за которое был вызван action "generateNewData" через setTimeout(0) для ${testInfo.N} slice:`,
-                        `${this.result} мсек.`
-                    ].join(' '))
+                    addTestsResult(this.id, String(this.result))
 
                     setTestsResults(_testResults);
                 })
@@ -218,10 +196,7 @@ const App = () => {
 
                 Promise.all(promisesToWait).then(() => {
                     this.result = new Date().getTime() - startTime;
-                    addTestsResult(this.id, [
-                        `Async. Время, за которое был вызван action "addNewItem" через setTimeout(0) для ${testInfo.N} slice:`,
-                        `${this.result} мсек.`
-                    ].join(' '))
+                    addTestsResult(this.id, String(this.result))
 
                     setTestsResults(_testResults);
                 })
@@ -246,10 +221,7 @@ const App = () => {
 
                 Promise.all(promisesToWait).then(() => {
                     this.result = new Date().getTime() - startTime;
-                    addTestsResult(this.id, [
-                        `Async. Время, за которое был вызван action "generateNewData" через setTimeout(0) для ${testInfo.N} slice:`,
-                        `${this.result} мсек.`
-                    ].join(' '))
+                    addTestsResult(this.id, String(this.result))
 
                     setTestsResults(_testResults);
                 })
@@ -267,12 +239,22 @@ const App = () => {
             </div>)
         });
 
+    const copyResult = () => {
+        navigator.clipboard.writeText(testsResults.join('\n')).then(() => void 0);
+    }
+
     return (
         <>
             <BackHeader onFibonacciSelect={() => window.location.reload()}/>
             <div className="M-Flex M-FlexRow">
                 <div className="M-FlexColumn">
                     <span className="Redux-Title Home-Title">Redux</span>
+                    <button
+                        className="M-Margin-xl"
+                        onClick={() => copyResult()}
+                        disabled={testsResults.length < 10}>
+                        Copy results to clipboard
+                    </button>
                 </div>
                 <div className="M-FullWidth M-Flex M-FlexColumn">
                     {
